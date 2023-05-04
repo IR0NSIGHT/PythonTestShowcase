@@ -20,6 +20,9 @@ Jedes Mal wenn ich den master pulle und beim builden ein Fehler auftritt, kocht 
 - Features haben gefälligst zu funktionieren beim merge
 - der master muss immer baubar sein. (Compilation bei python nicht so wichtig, aber von Gedanke her)
 
+![alt text](pushed_fix_try_again.png "Rah")
+
+
 Direkter Nutzen von Tests:
 Unit Tests zwingen den Entwickler einen Beweis für die Funktionalität des Features zu geben.
 Der Test ist ein Beispiel für die Verwendung des Features
@@ -108,6 +111,38 @@ Kompliziert aufzusetzen, flakey weil HTML und Performance, braucht lange zum Dur
 Nervig zu debuggen.
 Für uns tendentiell zu aufwändig mit zu wenig Benefit.
 
+### Test driven developement
+Philosophie der Softwareentwicklung
+"Bei der testgetriebenen Entwicklung erstellt der Programmierer Softwaretests konsequent __vor__ den zu testenden Komponenten." - Wikipedia
+Radikalste Alternative zu: Wir bauen erstmal die App, und am Schluss wenn noch Zeit ist, ein paar Tests.
+Quasi: Zuerst baue ich meine Tests, die meine Spezifikation abdecken.
+Dann baue ich Schritt für Schritt mein Feature, bis es alle Tests erfüllt.
+
+Eigene Meinung: Relevante Komponenten sollten Tests haben, die bei Bauen des features committed werden.
+Vorgeschlagene Regel: Pro feature-PR muss mind. ein Test vorliegen, der die Funktionalität beweist und edge cases testet.
+=> Garantie der Funktionalität, Sicherheit gegen zukünftige Bugs, usw
+
+# Testen in Python
+```py
+    #by default immer dabei:
+    assert(True)
+    assert(False, "Hello World")
+```
+
+Für meinen Integration test brauche ich ein setup:
+ich muss erst meine datenbank anbindung mocken, dann x, dann y, dann testen.
+und ich habe 12 tests, die alle das selbe setup brauchen.
+Und nach dem Test muss ich alles wieder löschen, bevor der nächste Test läuft.
+Ich brauchen eine __Fixture__.
+#### Pytest
+https://docs.pytest.org/en/7.3.x/getting-started.html#get-started
+
+pytest-coverage plugin
+$ pytest --cov --cov-report=html
+$ pytest --cov
+https://docs.pytest.org/en/latest/how-to/assert.html#assert-introspection
+
+
 ## Automated Testing
 Okay, ich habe viele tolle Tests, mit 100% coverage.
 Schnell noch den Fix pushen, und fertig.
@@ -125,3 +160,12 @@ Ziel: Jedes mal wenn irgendjemand, auf irgend einem Branch ins Repo pushed, dann
 "Send email on failed action"
 ![alt text](failed_runs.png "Insanity")
 
+_GITHUB_ action:
+von github bereitgestellte VM, die irgendwo online läuft, auf der man Kommandos ausführen kann.
+Actions werden als .yml dateien in .github/workflow abgelegt
+Github findet die .ymls automagisch, und führt sie aus
+
+Jede Action startet als blanke VM
+__LIVE BEISPIEL__
+
+https://github.com/IR0NSIGHT/PythonTestShowcase
