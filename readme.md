@@ -64,6 +64,9 @@ Funktion wird isoliert und getestet.
 ```
 ./src/geometry/test_square.py
 
+Negativ Beispiel:
+https://github.com/Schine/StarMade-Open/pull/57/files
+
 ### Integration Tests
 Ich baue ein Feature: User kann sein eigenes Kaffee Rezept in die Kaffeemaschinen app hochladen als JSON, und die Maschine braut ihm danach den Kaffee.
 Mein Modul besteht aus 15 internen Funktionen, das Interface hat Schnittstellen: 
