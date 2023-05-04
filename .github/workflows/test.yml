@@ -19,9 +19,12 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Run pytest
-      run: pytest --cov > testReport.txt && cat testReport.txt
+      run: pytest --cov > testReport.txt
       env:
         CI: true
+
+    - name: Print test report
+      run: cat testReport.txt
 
     - name: Upload coverage report
       uses: actions/upload-artifact@v2
