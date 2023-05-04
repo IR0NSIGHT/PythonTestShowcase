@@ -19,4 +19,12 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Run pytest
-      run: pytest --cov
+      run: pytest --cov --cov-report=html
+      env:
+        CI: true
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-report
+        path: ./htmlcov
