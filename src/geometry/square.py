@@ -11,3 +11,5 @@ def rectArea(r: Rect):
 def makeSquare(x: float) -> Rect:
     return (x,x)
 
+def owo():
+    return 1
