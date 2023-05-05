@@ -8,3 +8,4 @@ def grid():
 def test_grid(grid):
     assert len(grid) == 3
     assert rectArea(grid[0]) == 1
+    assert False
